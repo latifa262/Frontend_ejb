@@ -1,0 +1,105 @@
+<div class="p-grid">
+    <div class="p-col-12">
+
+        <p-toast></p-toast>
+
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                    <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" (click)="openNew()"></button>
+                    <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-mb-2" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+                </ng-template>
+
+                <ng-template pTemplate="right">
+                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
+                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help p-mb-2" (click)="dt.exportCSV()"></button>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="posts" [columns]="cols" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
+                     [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+                     styleClass="p-datatable-customers"
+                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Gestion terrain</h5>
+                        <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                    </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="nom">Nom<p-sortIcon field="nom"></p-sortIcon></th>
+                        <th pSortableColumn="capaciteParEquipe">Capacité de terrain<p-sortIcon field="category"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-post>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="post"></p-tableCheckbox>
+                        </td>
+                        <td><span class="p-column-title">Id</span>
+                            {{post.id}}
+                        </td>
+                        <td><span class="p-column-title">Nom</span>
+                            {{post.nom}}
+                        </td>
+                        <td><span class="p-column-title">Capacité de terrain</span>
+                            {{post.capaciteParEquipe}}
+                        </td>
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openUpdate(post)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(post.id)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        Total: {{posts ? posts.length : 0 }} terrains.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Ajout d'un terrain" [modal]="true" styleClass="p-fluid">
+            <form #loginForm="ngForm" (ngSubmit)="submitData(loginForm.value)">
+                <div class="main">
+                    <div class="input-fields">
+                        <input name="nom" ngModel placeholder="Veuillez saisir le nom" id="nom" type="text" pInputText ng-required="nom"/>
+                    </div><br>
+                    <div class="input-fields">
+                        <input name="capaciteParEquipe" ngModel placeholder="Veuillez saisir la capaciteParEquipe" id="capaciteParEquipe" type="number" pInputText ng-required="capaciteParEquipe"/>
+                    </div><br>
+                    <button [style]="{width: '200px',height:'30px'}">Submit</button>
+                </div>
+            </form>
+        </p-dialog>
+
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+
+
+        <p-dialog [(visible)]="productUpdate" [style]="{width: '450px'}" header="Modifié un terrain" [modal]="true" styleClass="p-fluid">
+            <form #loginForm="ngForm" (ngSubmit)="updateData(loginForm.value)">
+                <div class="main">
+                    <div class="input-fields">
+                        <input name="nom" ngModel placeholder="Veuillez saisir le nom" id="nom" type="text" pInputText/>
+                    </div><br>
+                    <div class="input-fields">
+                        <input name="capaciteParEquipe" ngModel placeholder="Veuillez saisir la capaciteParEquipe" id="capaciteParEquipe" type="number" pInputText ng-required="capaciteParEquipe"/>
+                    </div><br>
+                    <button [style]="{width: '450px'}">Update</button>
+                </div>
+            </form>
+        </p-dialog>
+
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>
