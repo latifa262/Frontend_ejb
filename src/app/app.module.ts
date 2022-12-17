@@ -149,9 +149,19 @@ import {SharedModule} from "../shared/shared.module";
 import {NgxWebstorageModule} from "ngx-webstorage";
 import {NgbDateAdapter} from "@ng-bootstrap/ng-bootstrap";
 import {NgbDateDayjsAdapter} from "./config/datepicker-adapter";
-import { ComplexeComponent } from './pages/complexe/complexe.component';
+
 import { TestComponent } from './pages/test/test.component';
-import { TerrainComponent } from './pages/terrain/terrain.component';
+
+import { ComplexesComponent } from './view/admin/complexes/complexes.component';
+import { TerrainsComponent } from './view/admin/terrains/terrains.component';
+import { ComplexeListComponent } from './view/admin/complexes/complexe-list/complexe-list.component';
+import { ComplexeViewComponent } from './view/admin/complexes/complexe-view/complexe-view.component';
+import { ComplexeEditComponent } from './view/admin/complexes/complexe-edit/complexe-edit.component';
+import { ComplexeCreateComponent } from './view/admin/complexes/complexe-create/complexe-create.component';
+import { TerrainCreateComponent } from './view/admin/terrains/terrain-create/terrain-create.component';
+import { TerrainEditComponent } from './view/admin/terrains/terrain-edit/terrain-edit.component';
+import { TerrainListComponent } from './view/admin/terrains/terrain-list/terrain-list.component';
+import { TerrainViewComponent } from './view/admin/terrains/terrain-view/terrain-view.component';
 
 @NgModule({
     imports: [
@@ -295,9 +305,17 @@ import { TerrainComponent } from './pages/terrain/terrain.component';
         CommandeListComponent,
         CommandeEditComponent,
         CommandeViewComponent,
-        ComplexeComponent,
         TestComponent,
-        TerrainComponent
+        ComplexesComponent,
+        TerrainsComponent,
+        ComplexeListComponent,
+        ComplexeViewComponent,
+        ComplexeEditComponent,
+        ComplexeCreateComponent,
+        TerrainCreateComponent,
+        TerrainEditComponent,
+        TerrainListComponent,
+        TerrainViewComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient,HttpParams,HttpHeaders} from '@angular/common/http';
-import {ConfirmationService, MessageService} from 'primeng/api';
-import {Commande} from '../model/commande.model';
+
+
 import {Complexe} from '../model/complexe.model';
 import {environment} from '../../../environments/environment';
 import {Observable} from "rxjs";
@@ -12,8 +12,7 @@ import {Observable} from "rxjs";
 })
 export class ComplexeService {
 
-    //private url = environment.baseUrl + 'commande/';
-    private url='https://fit-foot.herokuapp.com/api/complexes';
+    private url = environment.baseUrl+'complexes';
     private _items: Array<Complexe>;
     private _selected: Complexe;
     private _selectes: Array<Complexe>;
@@ -24,38 +23,15 @@ export class ComplexeService {
     private _submitted: boolean;
 
 
-    params = new HttpParams({
-        fromObject: { nom : 'nom',
-            capaciteParEquipe : 'capaciteParEquipe'
-        }
-    });
-
-    //headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
-
-
     // constructor(private messageService: MessageService,
     //             private confirmationService: ConfirmationService, private http: HttpClient) {
     // }
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+    }
 
     public findAll(): Observable<Array<Complexe>> {
+        console.log("entred to findAll");
         return this.http.get<Array<Complexe>>(this.url);
-    }
-    //Afficher les complexe
-    getPosts() {
-        return this.http.get(this.url);
-    }
-    //Ajout d'un complexe
-    postData(data: any): Observable<any> {
-        return this.http.post(`${this.url}`, data)
-    }
-    //supprimer complexe
-    deleteData(id: string): Observable<any> {
-        return this.http.delete(`${this.url}/${id}`)
-    }
-
-    public saveTerrain(model: any): Observable<any> {
-        return this.http.post(this.url, model);
     }
 
     public save(): Observable<Complexe> {
@@ -63,14 +39,14 @@ export class ComplexeService {
     }
 
     public edit(): Observable<Complexe> {
-        return this.http.put<Complexe>(this.url, this.selected);
+        return this.http.put<Complexe>(this.url + '/' + this.selected.id, this.selected);
     }
 
-    /*public deleteByReference(): Observable<number> {
-        return this.http.delete<number>(this.url + 'reference/' + this.selected.reference);
-    }*/
+    public deleteById(): Observable<number> {
+        return this.http.delete<number>(this.url + '/' + this.selected.id);
+    }
 
-    public deleteMultipleByReference(): Observable<number> {
+    public deleteMultipleById(): Observable<number> {
         return this.http.post<number>(this.url + 'delete-multiple-by-reference' , this.selectes);
     }
 
@@ -89,10 +65,23 @@ export class ComplexeService {
         this.items.splice(this.findIndexById(id), 1);
     }
 
-    public deleteMultipleIndexById() {
+    public deleteMultipleIndexById(){
         for (const item of this.selectes){
             this.deleteIndexById(item.id);
+            console.log('entred to delet multiple');
+            console.log(item.id);
+            this.deleteByIdselectedItems(item.id).subscribe(
+                data=>{
+                    console.log("deleted"+item.id);
+                },error => {
+                    console.log(error);
+                }
+            )
+
         }
+    }
+    public deleteByIdselectedItems(id:number): Observable<any> {
+        return this.http.delete<any>(this.url + '/' + id);
     }
 
     get items(): Array<Complexe> {

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient,HttpParams,HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Commande} from '../model/commande.model';
 import {Terrain} from '../model/terrain.model';
@@ -7,13 +7,13 @@ import {environment} from '../../../environments/environment';
 import {Observable} from "rxjs";
 
 
+
 @Injectable({
     providedIn: 'root'
 })
 export class TerrainService {
 
-    //private url = environment.baseUrl + 'commande/';
-    private url='https://fit-foot.herokuapp.com/api/terrains';
+    private url = environment.baseUrl + 'terrains';
     private _items: Array<Terrain>;
     private _selected: Terrain;
     private _selectes: Array<Terrain>;
@@ -24,44 +24,15 @@ export class TerrainService {
     private _submitted: boolean;
 
 
-    params = new HttpParams({
-        fromObject: { nom : 'nom',
-            capaciteParEquipe : 'capaciteParEquipe'
-        }
-    });
-
-    //headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
-
-
     // constructor(private messageService: MessageService,
     //             private confirmationService: ConfirmationService, private http: HttpClient) {
     // }
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+    }
 
     public findAll(): Observable<Array<Terrain>> {
+        console.log("entred to findAll");
         return this.http.get<Array<Terrain>>(this.url);
-    }
-
-    //Affichage de la liste des terrains
-    getPosts() {
-        return this.http.get(this.url);
-    }
-
-    //Ajout d'un terrain
-    postData(data: any): Observable<any> {
-        return this.http.post(`${this.url}`, data)
-    }
-    //supprimer terrain
-    deleteData(id: string): Observable<any> {
-        return this.http.delete(`${this.url}/${id}`)
-    }
-    //modifier terrain
-    updateData(data: any, id: string): Observable<any> {
-        return this.http.patch(`${this.url}/${id}`, data)
-    }
-
-    public saveTerrain(model: any): Observable<any> {
-        return this.http.post(this.url, model);
     }
 
     public save(): Observable<Terrain> {
@@ -69,15 +40,15 @@ export class TerrainService {
     }
 
     public edit(): Observable<Terrain> {
-        return this.http.put<Terrain>(this.url, this.selected);
+        return this.http.put<Terrain>(this.url + '/' + this.selected.id, this.selected);
     }
 
-    /*public deleteByReference(): Observable<number> {
-        return this.http.delete<number>(this.url + 'reference/' + this.selected.reference);
-    }*/
+    public deleteById(): Observable<number> {
+        return this.http.delete<number>(this.url + '/' + this.selected.id);
+    }
 
-    public deleteMultipleByReference(): Observable<number> {
-        return this.http.post<number>(this.url + 'delete-multiple-by-reference' , this.selectes);
+    public deleteMultipleById(): Observable<number> {
+        return this.http.post<number>(this.url + 'delete-multiple-by-reference', this.selectes);
     }
 
     public findIndexById(id: number): number {
@@ -96,9 +67,23 @@ export class TerrainService {
     }
 
     public deleteMultipleIndexById() {
-        for (const item of this.selectes){
+        for (const item of this.selectes) {
             this.deleteIndexById(item.id);
+            console.log('entred to delet multiple');
+            console.log(item.id);
+            this.deleteByIdselectedItems(item.id).subscribe(
+                data => {
+                    console.log("deleted" + item.id);
+                }, error => {
+                    console.log(error);
+                }
+            );
+
         }
+    }
+
+    public deleteByIdselectedItems(id: number): Observable<any> {
+        return this.http.delete<any>(this.url + '/' + id);
     }
 
     get items(): Array<Terrain> {

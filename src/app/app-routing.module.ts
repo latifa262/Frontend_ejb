@@ -38,8 +38,9 @@ import {AppErrorComponent} from './pages/app.error.component';
 import {AppAccessdeniedComponent} from './pages/app.accessdenied.component';
 import {AppLoginComponent} from './pages/app.login.component';
 import {CommandesComponent} from './view/admin/commandes/commandes.component';
-import {ComplexeComponent} from "./pages/complexe/complexe.component";
-import {TerrainComponent} from "./pages/terrain/terrain.component";
+import {TerrainsComponent} from "./view/admin/terrains/terrains.component";
+import {ComplexesComponent} from "./view/admin/complexes/complexes.component";
+
 
 @NgModule({
     imports: [
@@ -49,8 +50,8 @@ import {TerrainComponent} from "./pages/terrain/terrain.component";
                 children: [
                     {path: '', component: DashboardDemoComponent},
                     {path: 'view/commande', component: CommandesComponent},
-                    {path: 'view/complexe', component: ComplexeComponent},
-                    {path: 'view/terrain', component: TerrainComponent},
+                    {path: 'admin/complexe', component: ComplexesComponent},
+                    {path: 'admin/terrain', component: TerrainsComponent},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},

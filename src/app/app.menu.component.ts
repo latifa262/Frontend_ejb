@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { AppComponent } from './app.component';
-import { AppMainComponent } from './app.main.component';
+import {Component, OnInit} from '@angular/core';
+import {trigger, state, style, transition, animate} from '@angular/animations';
+import {AppComponent} from './app.component';
+import {AppMainComponent} from './app.main.component';
 
 @Component({
     selector: 'app-menu',
@@ -31,7 +31,8 @@ export class AppMenuComponent implements OnInit {
 
     model: any[];
 
-    constructor(public app: AppComponent, public appMain: AppMainComponent) { }
+    constructor(public app: AppComponent, public appMain: AppMainComponent) {
+    }
 
     ngOnInit() {
         this.model = [
@@ -40,7 +41,7 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']}
                 ]
-            },
+            },/*
             {
                 label: 'UI Kit', icon: 'pi pi-fw pi-star', routerLink: ['/uikit'],
                 items: [
@@ -102,15 +103,15 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'Submenu 1.1', icon: 'pi pi-fw pi-sign-in',
                                 items: [
-                                    { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-sign-in' },
-                                    { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-sign-in' },
-                                    { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-sign-in' },
+                                    {label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-sign-in'},
+                                    {label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-sign-in'},
+                                    {label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-sign-in'},
                                 ]
                             },
                             {
                                 label: 'Submenu 1.2', icon: 'pi pi-fw pi-sign-in',
                                 items: [
-                                    { label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-sign-in' }
+                                    {label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-sign-in'}
                                 ]
                             },
                         ]
@@ -121,14 +122,14 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'Submenu 2.1', icon: 'pi pi-fw pi-sign-in',
                                 items: [
-                                    { label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-sign-in' },
-                                    { label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-sign-in' },
+                                    {label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-sign-in'},
+                                    {label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-sign-in'},
                                 ]
                             },
                             {
                                 label: 'Submenu 2.2', icon: 'pi pi-fw pi-sign-in',
                                 items: [
-                                    { label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-sign-in' },
+                                    {label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-sign-in'},
                                 ]
                             },
                         ]
@@ -145,6 +146,36 @@ export class AppMenuComponent implements OnInit {
                         label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
                     }
                 ]
+            }, */
+            {
+                label: 'Mohammed', icon: 'pi pi-fw pi-copy', routerLink: ['/view'],
+                items: [
+                    {label: 'Complexe', icon: 'pi pi-fw pi-pencil', routerLink: ['/admin/complexe']},
+                    {label: 'Terrain', icon: 'pi pi-fw pi-pencil', routerLink: ['/admin/terrain']},
+
+
+                ]
+            },
+            {
+                label: 'Abdellah', icon: 'pi pi-fw pi-copy', routerLink: ['/view'],
+                items: []
+            },
+            {
+                label: 'Nihad', icon: 'pi pi-fw pi-copy', routerLink: ['/view'],
+                items: [
+                    {label: 'Landing', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'},
+                    {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login'], target: '_blank'},
+                    {label: 'Error', icon: 'pi pi-fw pi-exclamation-triangle', routerLink: ['/error'], target: '_blank'},
+                    {label: '404', icon: 'pi pi-fw pi-times', routerLink: ['/404'], target: '_blank'},
+                    {label: 'Access Denied', icon: 'pi pi-fw pi-ban', routerLink: ['/accessdenied'], target: '_blank'},
+                    {label: 'Empty', icon: 'pi pi-fw pi-clone', routerLink: ['/pages/empty']},
+
+
+                ]
+            },
+            {
+                label: 'Latifa', icon: 'pi pi-fw pi-copy', routerLink: ['/view'],
+                items: []
             },
 
         ];
