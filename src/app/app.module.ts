@@ -3,7 +3,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+import {LocationStrategy, HashLocationStrategy,CommonModule} from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AccordionModule} from 'primeng/accordion';
@@ -13,7 +13,7 @@ import {AvatarGroupModule} from 'primeng/avatargroup';
 import {BadgeModule} from 'primeng/badge';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {ButtonModule} from 'primeng/button';
-import {CalendarModule} from 'primeng/calendar';
+//import {CalendarModule} from 'primeng/calendar';
 import {CardModule} from 'primeng/card';
 import {CarouselModule} from 'primeng/carousel';
 import {CascadeSelectModule} from 'primeng/cascadeselect';
@@ -162,9 +162,22 @@ import { TerrainCreateComponent } from './view/admin/terrains/terrain-create/ter
 import { TerrainEditComponent } from './view/admin/terrains/terrain-edit/terrain-edit.component';
 import { TerrainListComponent } from './view/admin/terrains/terrain-list/terrain-list.component';
 import { TerrainViewComponent } from './view/admin/terrains/terrain-view/terrain-view.component';
+import {ReservationsComponent} from'./view/admin/reservations/reservations.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import{ReservationService} from './controller/service/reservation.service';
 
 @NgModule({
     imports: [
+        CommonModule ,
+        FlatpickrModule.forRoot(),
+        CalendarModule.forRoot({
+            provide: DateAdapter,
+            useFactory: adapterFactory,
+              }),
+        NgbModalModule,      
         BrowserModule,
         FormsModule,
         AppRoutingModule,
@@ -178,7 +191,7 @@ import { TerrainViewComponent } from './view/admin/terrains/terrain-view/terrain
         BadgeModule,
         BreadcrumbModule,
         ButtonModule,
-        CalendarModule,
+        //CalendarModule,
         CardModule,
         CarouselModule,
         CascadeSelectModule,
@@ -256,6 +269,7 @@ import { TerrainViewComponent } from './view/admin/terrains/terrain-view/terrain
 
     ],
     declarations: [
+        ReservationsComponent,
         AppComponent,
         AppMainComponent,
         AppMenuComponent,
@@ -320,7 +334,7 @@ import { TerrainViewComponent } from './view/admin/terrains/terrain-view/terrain
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService,
+        PhotoService, ProductService, MenuService,ReservationService,
         Title,
         { provide: LOCALE_ID, useValue: 'en' },
         { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },

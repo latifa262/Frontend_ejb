@@ -33,6 +33,12 @@
             ],
             "styles": [
               "src/styles.scss",
+              "node_modules/angular-calendar/css/angular-calendar.css",
+              "node_modules/flatpickr/dist/flatpickr.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
+
+
+
 
 
 
@@ -121,6 +127,9 @@
             "karmaConfig": "karma.conf.js",
             "styles": [
               "src/styles.scss",
+              "node_modules/angular-calendar/css/angular-calendar.css",
+              "node_modules/flatpickr/dist/flatpickr.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
 
             ],
             "scripts": [],

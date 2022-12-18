@@ -175,7 +175,9 @@ export class AppMenuComponent implements OnInit {
             },
             {
                 label: 'Latifa', icon: 'pi pi-fw pi-copy', routerLink: ['/view'],
-                items: []
+                items: [
+                {label: 'Reservation', icon: 'pi pi-fw pi-pencil', routerLink: ['/admin/reservation']},
+                ]
             },
 
         ];

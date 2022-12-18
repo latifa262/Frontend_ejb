@@ -40,6 +40,7 @@ import {AppLoginComponent} from './pages/app.login.component';
 import {CommandesComponent} from './view/admin/commandes/commandes.component';
 import {TerrainsComponent} from "./view/admin/terrains/terrains.component";
 import {ComplexesComponent} from "./view/admin/complexes/complexes.component";
+import {ReservationsComponent} from "./view/admin/reservations/reservations.component";
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import {ComplexesComponent} from "./view/admin/complexes/complexes.component";
                     {path: '', component: DashboardDemoComponent},
                     {path: 'view/commande', component: CommandesComponent},
                     {path: 'admin/complexe', component: ComplexesComponent},
+                    {path: 'admin/reservation', component: ReservationsComponent},
                     {path: 'admin/terrain', component: TerrainsComponent},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},

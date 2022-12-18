@@ -11,6 +11,9 @@ $gutter: 1rem; //for primeflex grid system
 
  */
 @import "assets/demo/flags/flags.css";
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import "../node_modules/flatpickr/dist/flatpickr.css";
+@import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 :host ::ng-deep {
   .p-paginator {
