@@ -3,13 +3,15 @@ import { Injectable } from '@angular/core';
 import {Reservation} from '../model/reservation.model';
 import { Observable} from 'rxjs';
 import {  CalendarEvent,  CalendarEventAction,  CalendarEventTimesChangedEvent,  CalendarView,} from 'angular-calendar';
+import {CommonModule,DatePipe} from '@angular/common';
+import { id } from 'date-fns/locale';
 
 @Injectable()
 export class ReservationService {
 
     configUrl = 'http://localhost:8080/api/reservations';
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,public datepipe: DatePipe) { }
     
 /////////////////////
     getReservation() :Observable<Reservation[]>{
@@ -18,9 +20,15 @@ export class ReservationService {
     }
 /////////////////////////
 private _selected: Reservation;
+id;
+    addReservation(event:CalendarEvent){
+        
+       let event1:Date = new Date(this.datepipe.transform(event.start, 'yyyy-MM-ddTHH:mm:ss.SSSSSS'));
+       let end1 :Date = new Date(this.datepipe.transform(event.end, 'yyyy-MM-ddTHH:mm:ss.SSSSSS'));
 
-    addReservation():Observable<Reservation>{
-        return this.http.post<Reservation>(this.configUrl,  this.selected);
+        return this.http.post<Reservation>(this.configUrl,{heureDebut:event1,heureFin:end1}).subscribe(data => {
+            this.id = data.id;
+        });
      }
 /////////////////////////    
      deleteReservation(id){
@@ -29,22 +37,15 @@ private _selected: Reservation;
     }
 
 //////////////////////////
-    get selected(): Reservation {
-        return this._selected;
-    }
 
-    set selected(value: Reservation) {
-        this._selected = value;
-    }
-
-    private _items: Array<Reservation>;
-
-    get items(): Array<Reservation> {
-        return this._items;
-    }
-
-    set items(value: Array<Reservation>) {
-        this._items = value;
-    }
+updateReservation(event:CalendarEvent){
+        
+    let event1:Date = new Date(this.datepipe.transform(event.start, 'yyyy-MM-ddTHH:mm:ss.SSSSSS'));
+    let end1 :Date = new Date(this.datepipe.transform(event.end, 'yyyy-MM-ddTHH:mm:ss.SSSSSS'));
+    
+     return this.http.put<Reservation>(this.configUrl,{heureDebut:event1,heureFin:end1}).subscribe(data => {
+         this.id = data.id;
+     });
+  }
 
 }

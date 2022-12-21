@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {  CalendarEvent,  CalendarEventAction,  CalendarEventTimesChangedEvent,  CalendarView,} from 'angular-calendar';
 import { Reservation } from '../../../controller/model/reservation.model';
-import {CommonModule} from '@angular/common';
+import {CommonModule,DatePipe} from '@angular/common';
 
 import { ReservationService } from '../../../controller/service/reservation.service';
 
@@ -13,14 +13,11 @@ const colors: any = {
     primary: '#ad2121',
     secondary: '#FAE3E3',
   },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF',
+  green: {
+    primary: '#008000',
+    secondary: '#008000',
   },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA',
-  },
+
 }; 
 
 @Component({
@@ -83,7 +80,8 @@ export class ReservationsComponent implements OnInit {
 
   constructor(
     private modal: NgbModal,
-    private reservationService:ReservationService) {}
+    public reservationService:ReservationService,
+    public datepipe: DatePipe) {}
 
   ngOnInit(){
     console.log('---------siiiiiiir-----');
@@ -102,7 +100,7 @@ export class ReservationsComponent implements OnInit {
             start:new Date(item.heureDebut.toLocaleString()),
             end:new Date(item.heureFin.toLocaleString()),
             title:'A day event',
-            color: colors.red,
+            color: colors.green,
             actions: this.actions
           })
         });
@@ -159,8 +157,8 @@ export class ReservationsComponent implements OnInit {
         title: 'New event',
         start: startOfDay(new Date()),
         end: endOfDay(new Date()),
-        /*color: colors.red,
-        draggable: true,
+        color: colors.green
+        /*draggable: true,
         resizable: {
           beforeStart: true,
           afterEnd: true,
@@ -171,23 +169,18 @@ export class ReservationsComponent implements OnInit {
 
 //add function
 reservation: Reservation;
-
 reservations: Reservation[] = [];
-addEventtodb(){
-  /*this.reservationService.addReservation().subscribe(data => {
-   this.items.push({...data});
 
-});*/
+addEventtodb(event:CalendarEvent){
+if(event.id==null){
+  this.reservationService.addReservation(event);
+}
+else{
+this.reservationService.updateReservation(event);
+
 }
 
-get items(): Array<Reservation> {
-  return this.reservationService.items;
 }
-
-set items(value: Array<Reservation>) {
-  this.reservationService.items = value;
-}
-//////////////
 
 //delete function
   deleteEvent(eventToDelete: CalendarEvent) {

@@ -11,14 +11,14 @@
 		  [(viewDate)]="viewDate"
 		  (viewDateChange)="closeOpenMonthViewDay()"
 		>
-		  Previous
+		  Precedent
 		</div>
 		<div
 		  class="btn btn-outline-secondary"
 		  mwlCalendarToday
 		  [(viewDate)]="viewDate"
 		>
-		  Today
+		  Aujourd'hui
 		</div>
 		<div
 		  class="btn btn-primary"
@@ -27,7 +27,7 @@
 		  [(viewDate)]="viewDate"
 		  (viewDateChange)="closeOpenMonthViewDay()"
 		>
-		  Next
+		  Suivant
 		</div>
 	  </div>
 	</div>
@@ -41,21 +41,21 @@
 		  (click)="setView(CalendarView.Month)"
 		  [class.active]="view === CalendarView.Month"
 		>
-		  Month
+		  Mois
 		</div>
 		<div
 		  class="btn btn-primary"
 		  (click)="setView(CalendarView.Week)"
 		  [class.active]="view === CalendarView.Week"
 		>
-		  Week
+		  Semaine
 		</div>
 		<div
 		  class="btn btn-primary"
 		  (click)="setView(CalendarView.Day)"
 		  [class.active]="view === CalendarView.Day"
 		>
-		  Day
+		  Jour
 		</div>
 	  </div>
 	</div>
@@ -78,7 +78,6 @@
 	  [viewDate]="viewDate"
 	  [events]="events"
 	  [refresh]="refresh"
-	  (eventClicked)="handleEvent('Clicked', $event.event)"
 	  (eventTimesChanged)="eventTimesChanged($event)"
 	>
 	</mwl-calendar-week-view>
@@ -87,7 +86,6 @@
 	  [viewDate]="viewDate"
 	  [events]="events"
 	  [refresh]="refresh"
-	  (eventClicked)="handleEvent('Clicked', $event.event)"
 	  (eventTimesChanged)="eventTimesChanged($event)"
 	>
 	</mwl-calendar-day-view>
@@ -98,10 +96,9 @@
   <br /><br /><br />
   
   <h3>
-	Edit events
-	<button class="btn btn-primary float-end" (click)="addEvent()">
-	  Add new
-	</button>
+	Les reservations 
+	<button pButton pRipple type="button" label="Ajouter Nouveau" class="p-button-rounded p-button-help p-mr-2 p-mb-2" (click)="addEvent()" style="margin-left:88%;"></button>
+
 	<div class="clearfix"></div>
   </h3>
   
@@ -109,23 +106,22 @@
 	<table class="table table-bordered">
 	  <thead>
 		<tr>
-		  <th>Title</th>
-		  <th>Starts at</th>
-		  <th>Ends at</th>
-		  <th>Remove</th>
+		  <th>Date Debut</th>
+		  <th>Date Fin</th>
+		  <th>Action</th>
 		</tr>
 	  </thead>
   
 	  <tbody>
 		<tr *ngFor="let event of events">
-		  <td>
+		  <!-- <td>
 			<input
 			  type="text"
 			  class="form-control"
 			  [(ngModel)]="event.title"
 			  (keyup)="refresh.next()"
 			/>
-		  </td>
+		  </td> -->
 		  
 		 
 		  <td>
@@ -161,39 +157,15 @@
 			/>
 		  </td>
 		  <td>
-			<button class="btn btn-danger" (click)="deleteEvent(event)">
-			  Delete
-			</button>
-			<button class="btn btn-primary" (click)="addEventtodb()">
-				Add
-			</button>
+
+			<button pButton pRipple type="button" label="Effacer" class="p-button-danger p-mr-2 p-mb-2" (click)="deleteEvent(event)" style="margin-left: 10px;"></button>
+
+		    <button pButton pRipple type="button" label="Ajouter" class="p-button-success p-mr-2 p-mb-2" (click)="addEventtodb(event)" style="margin-left: 20px;"></button>
 		  </td>
 		</tr>
 	  </tbody>
 	</table>
   </div>
   
-  <ng-template #modalContent let-close="close">
-	<div class="modal-header">
-	  <h5 class="modal-title">Event action occurred</h5>
-	  <button type="button" class="close" (click)="close()">
-		<span aria-hidden="true">&times;</span>
-	  </button>
-	</div>
-	<div class="modal-body">
-	  <div>
-		Action:
-		<pre>{{ modalData?.action }}</pre>
-	  </div>
-	  <div>
-		Event:
-		<pre>{{ modalData?.event | json }}</pre>
-	  </div>
-	</div>
-	<div class="modal-footer">
-	  <button type="button" class="btn btn-outline-secondary" (click)="close()">
-		OK
-	  </button>
-	</div>
-  </ng-template>
+ 
   
