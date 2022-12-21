@@ -1,0 +1,30 @@
+<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="Modification du Complexe" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        <div class="field">
+            <label for="nom">Nom</label>
+            <input type="text" pInputText id="nom" [(ngModel)]="selected.nom" required autofocus />
+            <small class="invalid" *ngIf="submitted && !selected.nom">total is required.</small>
+        </div>
+
+
+
+        <div class="formgrid grid">
+            <div class="field col">
+                <label for="longitude">heureFermeture</label>
+                <p-inputNumber id="longitude" [(ngModel)]="selected.longitude"></p-inputNumber>
+            </div>
+        </div>
+        <div class="formgrid grid">
+            <div class="field col">
+                <label for="latitude">heureouverte</label>
+                <p-inputNumber id="latitude" [(ngModel)]="selected.latitude"></p-inputNumber>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+        <button pButton pRipple label="Modifier" icon="pi pi-check" class="p-button-text" (click)="edit()"></button>
+    </ng-template>
+</p-dialog>

@@ -9,6 +9,6 @@ describe('Rome App', () => {
 
     it('should display welcome message', () => {
         page.navigateTo();
-        expect(page.getTitleText()).toEqual('Welcome to Roma!');
+        expect(page.getTitleText()).toEqual('Welcome to Find Resto!');
     });
 });

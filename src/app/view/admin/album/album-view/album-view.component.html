@@ -1,0 +1,20 @@
+<p-dialog [(visible)]="viewDialog" [style]="{width: '450px'}" header="Détails du Complexe" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="field">
+            <label for="id">Id</label>
+            <input type="text" pInputText id="id" [(ngModel)]="selected.id" disabled />
+        </div>
+        <div class="field">
+            <label for="nom">Photos</label>
+            <input type="text" pInputText id="photo" [(ngModel)]="selected.photo" disabled />
+        </div>
+
+
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+    </ng-template>
+</p-dialog>

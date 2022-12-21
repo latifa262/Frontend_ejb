@@ -1,0 +1,19 @@
+<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="Modification du Complexe" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        <div class="field">
+            <label for="nom">Album</label>
+            <input type="file" id="photo" name="photo">
+            <small class="invalid" *ngIf="submitted && !selected.nom">total is required.</small>
+        </div>
+
+
+
+        
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+        <button pButton pRipple label="Modifier" icon="pi pi-check" class="p-button-text" (click)="edit()"></button>
+    </ng-template>
+</p-dialog>

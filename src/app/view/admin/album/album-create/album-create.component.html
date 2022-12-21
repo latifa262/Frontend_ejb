@@ -1,0 +1,19 @@
+<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="Ajout du complexe" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        <div class="field">
+            <label for="nom">Image</label>
+            <input type="file" id="photo" name="photo">
+            <small class="invalid" *ngIf="submitted && !selected.nom">total is required.</small>
+        </div>
+
+
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+    </ng-template>
+</p-dialog>

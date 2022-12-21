@@ -37,10 +37,11 @@ import {AppNotfoundComponent} from './pages/app.notfound.component';
 import {AppErrorComponent} from './pages/app.error.component';
 import {AppAccessdeniedComponent} from './pages/app.accessdenied.component';
 import {AppLoginComponent} from './pages/app.login.component';
-import {CommandesComponent} from './view/admin/commandes/commandes.component';
-import {TerrainsComponent} from "./view/admin/terrains/terrains.component";
-import {ComplexesComponent} from "./view/admin/complexes/complexes.component";
-import {ReservationsComponent} from "./view/admin/reservations/reservations.component";
+
+import {RestaurantsComponent} from "./view/admin/restaurant/restaurants.component";
+import {VillesComponent} from "./view/admin/ville/villes.component";
+import {AlbumsComponent} from "./view/admin/album/albums.component";
+import {QuartiersComponent} from "./view/admin/quartier/quartiers.component";
 
 
 @NgModule({
@@ -50,10 +51,10 @@ import {ReservationsComponent} from "./view/admin/reservations/reservations.comp
                 path: '', component: AppMainComponent,
                 children: [
                     {path: '', component: DashboardDemoComponent},
-                    {path: 'view/commande', component: CommandesComponent},
-                    {path: 'admin/complexe', component: ComplexesComponent},
-                    {path: 'admin/reservation', component: ReservationsComponent},
-                    {path: 'admin/terrain', component: TerrainsComponent},
+                    {path: 'admin/album', component: AlbumsComponent},
+                    {path: 'admin/ville', component: VillesComponent},
+                    {path: 'admin/restaurant', component: RestaurantsComponent},
+                    {path: 'admin/quartier', component: QuartiersComponent},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},

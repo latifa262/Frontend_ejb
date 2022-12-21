@@ -1,0 +1,66 @@
+<div class="grid">
+    <div class="col-12">
+
+        <p-toast></p-toast>
+
+        <div class="card">
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-success mr-2 mb-2" (click)="openCreate()"></button>
+                    <button pButton pRipple label="Effacer" icon="pi pi-trash" class="p-button-danger mb-2" (click)="deleteMultiple()" [disabled]="!selectes || !selectes.length"></button>
+                </ng-template>
+
+                
+            </p-toolbar>
+
+            <p-table #dt [value]="items" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['photo']"
+                     [(selection)]="selectes" [rowHover]="true" dataKey="id"
+                     styleClass="p-datatable-customers"
+                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column flex-md-row justify-content-md-between table-header">
+                        <h5 class="mb-3">Gérer les albums</h5>
+
+
+
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="nom">Photos <p-sortIcon field="nom"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-album>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="album"></p-tableCheckbox>
+                        </td>
+                        <td>{{album.id}}</td>
+                        <td>{{album.photo}}</td>
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="edit(album)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info mr-2" (click)="view(album)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(album)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="flex align-items-center justify-content-between">
+                        Au total il y a {{items ? items.length : 0 }} éléments.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-album-create></app-album-create>
+        <app-album-edit></app-album-edit>
+        <app-album-view></app-album-view>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

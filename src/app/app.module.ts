@@ -139,11 +139,6 @@ import {CustomerService} from './demo/service/customerservice';
 import {PhotoService} from './demo/service/photoservice';
 import {ProductService} from './demo/service/productservice';
 import {IconService} from './demo/service/iconservice';
-import { CommandeCreateComponent } from './view/admin/commandes/commande-create/commande-create.component';
-import { CommandesComponent } from './view/admin/commandes/commandes.component';
-import { CommandeListComponent } from './view/admin/commandes/commande-list/commande-list.component';
-import { CommandeEditComponent } from './view/admin/commandes/commande-edit/commande-edit.component';
-import { CommandeViewComponent } from './view/admin/commandes/commande-view/commande-view.component';
 
 import {SharedModule} from "../shared/shared.module";
 import {NgxWebstorageModule} from "ngx-webstorage";
@@ -152,22 +147,36 @@ import {NgbDateDayjsAdapter} from "./config/datepicker-adapter";
 
 import { TestComponent } from './pages/test/test.component';
 
-import { ComplexesComponent } from './view/admin/complexes/complexes.component';
-import { TerrainsComponent } from './view/admin/terrains/terrains.component';
-import { ComplexeListComponent } from './view/admin/complexes/complexe-list/complexe-list.component';
-import { ComplexeViewComponent } from './view/admin/complexes/complexe-view/complexe-view.component';
-import { ComplexeEditComponent } from './view/admin/complexes/complexe-edit/complexe-edit.component';
-import { ComplexeCreateComponent } from './view/admin/complexes/complexe-create/complexe-create.component';
-import { TerrainCreateComponent } from './view/admin/terrains/terrain-create/terrain-create.component';
-import { TerrainEditComponent } from './view/admin/terrains/terrain-edit/terrain-edit.component';
-import { TerrainListComponent } from './view/admin/terrains/terrain-list/terrain-list.component';
-import { TerrainViewComponent } from './view/admin/terrains/terrain-view/terrain-view.component';
-import {ReservationsComponent} from'./view/admin/reservations/reservations.component';
+import { RestaurantsComponent } from './view/admin/restaurant/restaurants.component';
+import { RestaurantListComponent } from './view/admin/restaurant/restaurant-list/restaurant-list.component';
+import { RestaurantViewComponent } from './view/admin/restaurant/restaurant-view/restaurant-view.component';
+import { RestaurantEditComponent } from './view/admin/restaurant/restaurant-edit/restaurant-edit.component';
+import { RestaurantCreateComponent } from './view/admin/restaurant/restaurant-create/restaurant-create.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
+
+import { VillesComponent } from './view/admin/ville/villes.component';
+import { VilleListComponent } from './view/admin/ville/ville-list/ville-list.component';
+import { VilleViewComponent } from './view/admin/ville/ville-view/ville-view.component';
+import { VilleEditComponent } from './view/admin/ville/ville-edit/ville-edit.component';
+import { VilleCreateComponent } from './view/admin/ville/ville-create/ville-create.component';
+
+import { AlbumsComponent } from './view/admin/album/albums.component';
+import { AlbumListComponent } from './view/admin/album/album-list/album-list.component';
+import { AlbumViewComponent } from './view/admin/album/album-view/album-view.component';
+import { AlbumEditComponent } from './view/admin/album/album-edit/album-edit.component';
+import { AlbumCreateComponent } from './view/admin/album/album-create/album-create.component';
+
+import { QuartiersComponent } from './view/admin/quartier/quartiers.component';
+import { QuartierListComponent } from './view/admin/quartier/quartier-list/quartier-list.component';
+import { QuartierViewComponent } from './view/admin/quartier/quartier-view/quartier-view.component';
+import { QuartierEditComponent } from './view/admin/quartier/quartier-edit/quartier-edit.component';
+import { QuartierCreateComponent } from './view/admin/quartier/quartier-create/quartier-create.component';
+
+
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import{ReservationService} from './controller/service/reservation.service';
+import{RestaurantService} from './controller/service/restaurant.service';
 
 @NgModule({
     imports: [
@@ -269,7 +278,6 @@ import{ReservationService} from './controller/service/reservation.service';
 
     ],
     declarations: [
-        ReservationsComponent,
         AppComponent,
         AppMainComponent,
         AppMenuComponent,
@@ -314,32 +322,38 @@ import{ReservationService} from './controller/service/reservation.service';
         AppErrorComponent,
         AppAccessdeniedComponent,
         AppLoginComponent,
-        CommandeCreateComponent,
-        CommandesComponent,
-        CommandeListComponent,
-        CommandeEditComponent,
-        CommandeViewComponent,
         TestComponent,
-        ComplexesComponent,
-        TerrainsComponent,
-        ComplexeListComponent,
-        ComplexeViewComponent,
-        ComplexeEditComponent,
-        ComplexeCreateComponent,
-        TerrainCreateComponent,
-        TerrainEditComponent,
-        TerrainListComponent,
-        TerrainViewComponent
+        RestaurantsComponent,
+        RestaurantListComponent,
+        RestaurantViewComponent,
+        RestaurantEditComponent,
+        RestaurantCreateComponent,
+        VillesComponent,
+        VilleListComponent,
+        VilleViewComponent,
+        VilleEditComponent,
+        VilleCreateComponent,
+        AlbumsComponent,
+        AlbumListComponent,
+        AlbumViewComponent,
+        AlbumEditComponent,
+        AlbumCreateComponent,
+        QuartiersComponent,
+        QuartierListComponent,
+        QuartierViewComponent,
+        QuartierEditComponent,
+        QuartierCreateComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService,ReservationService,DatePipe,
+        PhotoService, ProductService, MenuService,DatePipe,RestaurantService,
         Title,
         { provide: LOCALE_ID, useValue: 'en' },
         { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+
 })
 export class AppModule {
 }
